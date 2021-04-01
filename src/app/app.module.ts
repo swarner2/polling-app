@@ -14,6 +14,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { UserInfoComponent } from './user-info/user-info.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { PollsComponent } from './questions/questions.component';
+import { questionsReducer } from './store/questions/questions.reducers';
+
 
 
 
@@ -22,21 +26,24 @@ import { UserInfoComponent } from './user-info/user-info.component';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    UserInfoComponent
+    UserInfoComponent,
+    PollsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     StoreModule.forRoot(
       {
-        user: userReducer
+        user: userReducer,
+        questions: questionsReducer
       }, {}),
     BrowserAnimationsModule,
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
     MatSelectModule,
     MatFormFieldModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

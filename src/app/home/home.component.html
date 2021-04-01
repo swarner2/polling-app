@@ -1,1 +1,4 @@
-<p>home works!</p>
+<mat-tab-group>
+    <mat-tab label="Unanswered Questions"> <app-questions [questions$]="unansweredQuestions$"></app-questions> </mat-tab>
+    <mat-tab label="Answered Questions"> <app-questions [questions$]="answeredQuestions$"></app-questions> </mat-tab>
+</mat-tab-group>

@@ -1,5 +1,5 @@
 import { createSelector } from '@ngrx/store';
-import { PollState } from 'src/app/models/poll-store.model';
+import { PollState } from 'src/app/models/poll-state.model';
 import { UserModel } from 'src/app/models/user.model';
 
 // TODO :: rename PollStore to PollState

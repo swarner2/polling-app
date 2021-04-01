@@ -1,8 +1,8 @@
 import { KeyValue } from '@angular/common';
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { users } from 'src/data/users';
-import { PollState } from '../models/poll-store.model';
+import { users } from 'src/data/usersAndQuestions';
+import { PollState } from '../models/poll-state.model';
 import { login } from '../store/user/user.actions';
 
 @Component({

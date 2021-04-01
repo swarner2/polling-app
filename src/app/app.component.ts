@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { users, questions } from 'src/data/users';
-import { PollState } from './models/poll-store.model';
+import { users, questions } from 'src/data/usersAndQuestions';
+import { PollState } from './models/poll-state.model';
 import { QuestionModel } from './models/question.model';
 import { UserModel } from './models/user.model';
+import { setAllQuestions } from './store/questions/questions.actions';
 import { logout } from './store/user/user.actions';
 import { getIsLoggedIn } from './store/user/user.selectors';
 
@@ -19,7 +20,9 @@ export class AppComponent {
 
   isLoggedIn$ = this._store.select(getIsLoggedIn);
 
-  constructor(private _store: Store<PollState>) {}
+  constructor(private _store: Store<PollState>) {
+    this._store.dispatch(setAllQuestions({questions}));
+  }
 
   logout(): void {
     this._store.dispatch(logout());
