@@ -1,1 +1,6 @@
-<app-login></app-login>
+<app-login *ngIf="!(isLoggedIn$ | async); else outlet"></app-login>
+
+<ng-template #outlet>
+    <button mat-raised-button color="primary" (click)="logout()">Logout</button>
+    <router-outlet></router-outlet>
+</ng-template>

@@ -1,5 +1,5 @@
 import { UserModel } from './user.model';
 
-export class PollStore {
+export class PollState {
     user: UserModel;
 }
