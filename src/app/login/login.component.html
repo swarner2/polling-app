@@ -1,0 +1,10 @@
+<mat-form-field appearance="fill">
+    <mat-label>Username</mat-label>
+    <mat-select [(value)]="userSelection">
+        <mat-option *ngFor="let user of users | keyvalue: orderByName" [value]="user.value">
+            {{ user.value.name }}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+
+<button mat-raised-button color="primary" [disabled]="userSelection === null" (click)="login()">Login</button>

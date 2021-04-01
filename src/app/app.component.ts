@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { users, questions } from 'src/data/users';
 import { QuestionModel } from './models/question.model';
 import { UserModel } from './models/user.model';
@@ -8,15 +8,14 @@ import { UserModel } from './models/user.model';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   title = 'poll-app';
-
 
   userList = Object.keys(users).map(user => new UserModel(users[user]));
   questionList = Object.keys(questions).map(question => new QuestionModel(questions[question]));
 
-  ngOnInit(): void {
-    console.log(this.userList);
-    console.log(this.questionList);
+
+  constructor() {
   }
+
 }
