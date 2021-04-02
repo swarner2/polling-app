@@ -1,0 +1,52 @@
+<mat-card *ngIf="!(isQuestionAnswered$ | async); else answeredCard">
+    <mat-card-header>
+        <img mat-card-avatar src="{{(user$ | async)?.avatarURL}}" onerror="this.src='/assets/default_avatar.jpg'">
+        <mat-card-title>Would You Rather</mat-card-title>
+        <!-- TODO :: dynamically set to you if you are the author -->
+        <mat-card-subtitle>Asked by: {{users[(question$ | async)?.author].name }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-radio-group>
+            <div>
+                <mat-radio-button value="optionOne">{{(question$ | async).optionOne.text}}</mat-radio-button>
+            </div>
+            <div>
+                <mat-radio-button value="optionTwo">{{(question$ | async).optionTwo.text}}</mat-radio-button>
+            </div>
+        </mat-radio-group>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button>Submit</button>
+    </mat-card-actions>
+</mat-card>
+
+<ng-template #answeredCard>
+    <mat-card>
+        <mat-card-header>
+            <img mat-card-avatar src="{{(user$ | async)?.avatarURL}}" onerror="this.src='/assets/default_avatar.jpg'">
+            <mat-card-title>Would You Rather</mat-card-title>
+            <!-- TODO :: dynamically set to you if you are the author -->
+            <mat-card-subtitle>Asked by: {{users[(question$ | async)?.author].name }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <!-- TODO :: make a template for answered options -->
+                <mat-card>
+                    <mat-card-header>
+                        <span *ngIf="(optionOfQuestionChosenByUser$ | async) === 'optionOne'" class="material-icons">check_circle</span>
+                        <mat-card-title>Option 1: {{(question$ | async).optionOne.text}} </mat-card-title>
+                        <mat-card-subtitle>{{ (optionOfQuestionChosenByUser$ | async) === 'optionOne' ? 'You Voted For This Option' : '' }}</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+                <mat-card>
+                    <mat-card-header>
+                        <span *ngIf="(optionOfQuestionChosenByUser$ | async) === 'optionTwo'" class="material-icons">check_circle</span>
+                        <mat-card-title>Option 2: {{(question$ | async).optionTwo.text}} </mat-card-title>
+                        <mat-card-subtitle>{{ (optionOfQuestionChosenByUser$ | async) === 'optionTwo' ? 'You Voted For This Option' : '' }}</mat-card-subtitle>
+                    </mat-card-header>
+                </mat-card>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button>Submit</button>
+        </mat-card-actions>
+    </mat-card>
+</ng-template>

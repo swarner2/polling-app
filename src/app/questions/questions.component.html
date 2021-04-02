@@ -1,5 +1,4 @@
 
-<div *ngFor="let question of (questions$ | async) | keyvalue: orderByTimestamp">
-    {{question.value.optionOne.text}}
-    {{question.value.optionTwo.text}}
+<div *ngFor="let question of (questions$ | async) | keyvalue: orderByTimestamp" >
+   <a [routerLink]="['/questions', question.key]">{{getQuestionTitle(question)}}</a> 
 </div>

@@ -15,8 +15,12 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { UserInfoComponent } from './user-info/user-info.component';
 import { MatTabsModule } from '@angular/material/tabs';
-import { PollsComponent } from './questions/questions.component';
+import { QuestionsComponent } from './questions/questions.component';
 import { questionsReducer } from './store/questions/questions.reducers';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatRadioModule } from '@angular/material/radio';
+import { QuestionDetailComponent } from './question-detail/question-detail.component';
+
 
 
 
@@ -27,7 +31,8 @@ import { questionsReducer } from './store/questions/questions.reducers';
     LoginComponent,
     HomeComponent,
     UserInfoComponent,
-    PollsComponent
+    QuestionsComponent,
+    QuestionDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +48,9 @@ import { questionsReducer } from './store/questions/questions.reducers';
     MatFormFieldModule,
     MatButtonModule,
     MatCardModule,
-    MatTabsModule
+    MatTabsModule,
+    MatExpansionModule,
+    MatRadioModule
   ],
   providers: [],
   bootstrap: [AppComponent]
