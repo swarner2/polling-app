@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, tap } from 'rxjs/operators';
 import { users } from 'src/data/usersAndQuestions';
@@ -17,8 +17,16 @@ import { getUser } from '../store/user/user.selectors';
 })
 export class QuestionDetailComponent implements OnInit {
   questionId = this.route.snapshot.paramMap.get('question_id');
-  questionId$ = this.route.queryParams.pipe(map(_ => this.route.snapshot.paramMap.get('question_id')));
-  question$ = this._store.select(getQuestion, {questionId: this.questionId});
+  questionId$ = this.route.queryParams.pipe(
+    map(_ => this.route.snapshot.paramMap.get('question_id')),
+    );
+  question$ = this._store.select(getQuestion, {questionId: this.questionId})
+    .pipe(
+      tap(question => {
+        if (question === undefined) {
+          this.router.navigate(['page-not-found']);
+        }
+      }));
   isQuestionAnswered$ = this._store.select(getIsQuestionAnsweredByUser, {questionId: this.questionId});
   questionOptionStats$ = this._store.select(getQuestionOptionStats, {questionId: this.questionId});
   userId: string = null;
@@ -28,7 +36,7 @@ export class QuestionDetailComponent implements OnInit {
   users = users;
   selectedOption = null;
 
-  constructor(private _store: Store<PollState>, private route: ActivatedRoute) {}
+  constructor(private _store: Store<PollState>, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
   }

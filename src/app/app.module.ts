@@ -23,6 +23,7 @@ import { QuestionDetailComponent } from './question-detail/question-detail.compo
 import { EffectsModule } from '@ngrx/effects';
 import { LogoutEffects } from './effects/logout.effects';
 import { FormsModule } from '@angular/forms';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 
@@ -35,7 +36,8 @@ import { FormsModule } from '@angular/forms';
     HomeComponent,
     UserInfoComponent,
     QuestionsComponent,
-    QuestionDetailComponent
+    QuestionDetailComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

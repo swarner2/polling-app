@@ -62,7 +62,7 @@ export const getAnsweredQuestions = createSelector(
 export const getIsQuestionAnsweredByUser = createSelector(
   getQuestion,
   getUser,
-  (question: QuestionModel, user: UserModel): boolean => question.id in (user?.answers || [])
+  (question: QuestionModel, user: UserModel): boolean => question?.id in (user?.answers || [])
 );
 
 export const getQuestionOptionStats = createSelector(
