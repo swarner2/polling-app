@@ -7,6 +7,7 @@
         <mat-menu #questionsMenu="matMenu" yPosition="below">
             <app-questions [questions$]="questions$"></app-questions>
         </mat-menu>
+        <button mat-button [routerLink]="['/add']">Add A Question</button>
         <button mat-raised-button color="primary" (click)="logout()">Logout</button>
 
     </div>

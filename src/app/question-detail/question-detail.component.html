@@ -17,7 +17,7 @@
         </mat-radio-group>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-raised-button (click)="submitAnswer()">Submit</button>
+        <button mat-raised-button [disabled]="!selectedOption" (click)="submitAnswer()">Submit</button>
     </mat-card-actions>
 </mat-card>
 

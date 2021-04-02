@@ -1,7 +1,7 @@
 import { createReducer, on, select } from '@ngrx/store';
 import { Questions } from 'src/app/models/poll-state.model';
 import { QuestionModel } from 'src/app/models/question.model';
-import { answerQuestion, setAllQuestions } from './questions.actions';
+import { addQuestion, answerQuestion, setAllQuestions } from './questions.actions';
 
 export const initialState = null;
 
@@ -18,7 +18,11 @@ const _questionsReducer = createReducer(
       }
     });
     return {...state, [questionId]: targetQuestion};
-  })
+  }),
+ on(addQuestion, (state, props) => {
+  const { question } = props;
+  return {...state, [question.id]: question }
+ })
 );
 
 export function questionsReducer(state, action): Questions {

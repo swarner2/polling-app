@@ -25,6 +25,12 @@ import { LogoutEffects } from './effects/logout.effects';
 import { FormsModule } from '@angular/forms';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { AddQuestionComponent } from './add-question/add-question.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+
+
 
 @NgModule({
   declarations: [
@@ -34,7 +40,8 @@ import { MatMenuModule } from '@angular/material/menu';
     UserInfoComponent,
     QuestionsComponent,
     QuestionDetailComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AddQuestionComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +62,10 @@ import { MatMenuModule } from '@angular/material/menu';
     MatExpansionModule,
     MatRadioModule,
     FormsModule,
-    MatMenuModule
+    MatMenuModule,
+    MatInputModule,
+    MatIconModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
