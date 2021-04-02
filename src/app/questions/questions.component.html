@@ -1,4 +1,4 @@
 
 <div *ngFor="let question of (questions$ | async) | keyvalue: orderByTimestamp" >
-   <a [routerLink]="['/questions', question.key]">{{getQuestionTitle(question)}}</a> 
+   <button mat-button [routerLink]="['/questions', question.key]">{{getQuestionTitle(question)}}</button> 
 </div>

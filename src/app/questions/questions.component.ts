@@ -13,7 +13,7 @@ import { QuestionModel } from '../models/question.model';
 export class QuestionsComponent {
   @Input() questions$: Observable<Questions>;
 
-    orderByTimestamp = (a: KeyValue<string, any>, b: KeyValue<string, any>): number => {
+  orderByTimestamp = (a: KeyValue<string, any>, b: KeyValue<string, any>): number => {
     return a.value.timestamp < b.value.timestamp ? 1 : -1;
   }
 
@@ -21,7 +21,7 @@ export class QuestionsComponent {
   getQuestionTitle(question: KeyValue<string, QuestionModel>): string {
     const authorName = users[question.value.author].name;
     const date = new Date(question.value.timestamp).toDateString();
-    return `A question from ${authorName} - ${date}`;
+    return `${authorName} - ${date}`;
   }
 
 }

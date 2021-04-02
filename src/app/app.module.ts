@@ -24,10 +24,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { LogoutEffects } from './effects/logout.effects';
 import { FormsModule } from '@angular/forms';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-
-
-
-
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -49,6 +46,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
       }, {}),
     BrowserAnimationsModule,
     StoreDevtoolsModule.instrument({ maxAge: 25 }),
+    EffectsModule.forRoot([LogoutEffects]),
     MatSelectModule,
     MatFormFieldModule,
     MatButtonModule,
@@ -57,7 +55,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MatExpansionModule,
     MatRadioModule,
     FormsModule,
-    EffectsModule.forRoot([LogoutEffects])
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

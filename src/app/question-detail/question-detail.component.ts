@@ -4,8 +4,6 @@ import { Store } from '@ngrx/store';
 import { map, tap } from 'rxjs/operators';
 import { users } from 'src/data/usersAndQuestions';
 import { PollState } from '../models/poll-state.model';
-import { OptionId } from '../models/question.model';
-import { UserModel } from '../models/user.model';
 import { answerQuestion } from '../store/questions/questions.actions';
 import { getIsQuestionAnsweredByUser, getQuestion, getQuestionOptionStats } from '../store/questions/questions.selectors';
 import { getUser } from '../store/user/user.selectors';
@@ -36,7 +34,9 @@ export class QuestionDetailComponent implements OnInit {
   users = users;
   selectedOption = null;
 
-  constructor(private _store: Store<PollState>, private route: ActivatedRoute, private router: Router) {}
+  constructor(private _store: Store<PollState>, private route: ActivatedRoute, private router: Router) {
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
 
   ngOnInit(): void {
   }
