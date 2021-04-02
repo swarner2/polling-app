@@ -20,6 +20,8 @@ import { questionsReducer } from './store/questions/questions.reducers';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatRadioModule } from '@angular/material/radio';
 import { QuestionDetailComponent } from './question-detail/question-detail.component';
+import { EffectsModule } from '@ngrx/effects';
+import { LogoutEffects } from './effects/logout.effects';
 
 
 
@@ -50,7 +52,8 @@ import { QuestionDetailComponent } from './question-detail/question-detail.compo
     MatCardModule,
     MatTabsModule,
     MatExpansionModule,
-    MatRadioModule
+    MatRadioModule,
+    EffectsModule.forRoot([LogoutEffects])
   ],
   providers: [],
   bootstrap: [AppComponent]
