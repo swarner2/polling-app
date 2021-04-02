@@ -29,24 +29,21 @@
             <mat-card-subtitle>Asked by: {{users[(question$ | async)?.author].name }}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
-            <!-- TODO :: make a template for answered options -->
-                <mat-card>
+                <mat-card *ngFor="let option of (questionOptionStats$ | async) | keyvalue ; let i = index">
                     <mat-card-header>
-                        <span *ngIf="(optionOfQuestionChosenByUser$ | async) === 'optionOne'" class="material-icons">check_circle</span>
-                        <mat-card-title>Option 1: {{(question$ | async).optionOne.text}} </mat-card-title>
-                        <mat-card-subtitle>{{ (optionOfQuestionChosenByUser$ | async) === 'optionOne' ? 'You Voted For This Option' : '' }}</mat-card-subtitle>
+                        <span *ngIf="option.value['isUsersAnswer']" class="material-icons">check_circle</span>
+                        <mat-card-title>Option {{i + 1}}: {{option.value['text']}} </mat-card-title>
+                        <mat-card-subtitle> {{option.value['isUsersAnswer'] ? 'You Voted For This Option' : ' ' }}</mat-card-subtitle>
                     </mat-card-header>
-                </mat-card>
-                <mat-card>
-                    <mat-card-header>
-                        <span *ngIf="(optionOfQuestionChosenByUser$ | async) === 'optionTwo'" class="material-icons">check_circle</span>
-                        <mat-card-title>Option 2: {{(question$ | async).optionTwo.text}} </mat-card-title>
-                        <mat-card-subtitle>{{ (optionOfQuestionChosenByUser$ | async) === 'optionTwo' ? 'You Voted For This Option' : '' }}</mat-card-subtitle>
-                    </mat-card-header>
+                    <mat-card-content>
+                        <div>
+                            Number Of Votes : {{ option.value['numberOfVotes'] }}
+                        </div>
+                        <div>
+                            Percentage Of Votes : {{ option.value['percentageOfVotes'] | percent}}
+                        </div>
+                    </mat-card-content>
                 </mat-card>
         </mat-card-content>
-        <mat-card-actions>
-            <button mat-raised-button>Submit</button>
-        </mat-card-actions>
     </mat-card>
 </ng-template>

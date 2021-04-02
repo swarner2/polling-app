@@ -1,6 +1,6 @@
 import { createSelector } from '@ngrx/store';
 import { PollState, Questions } from 'src/app/models/poll-state.model';
-import { QuestionModel } from 'src/app/models/question.model';
+import { OptionStatsModel, QuestionModel, QuestionOptionStatsModel } from 'src/app/models/question.model';
 import { UserModel } from 'src/app/models/user.model';
 import { getUser } from '../user/user.selectors';
 
@@ -65,14 +65,8 @@ export const getIsQuestionAnsweredByUser = createSelector(
   (question: QuestionModel, user: UserModel): boolean => question.id in (user?.answers || [])
 );
 
-export const getOptionOfQuestionChosenByUser = createSelector(
-  getUser,
+export const getQuestionOptionStats = createSelector(
   getQuestion,
-  getIsQuestionAnsweredByUser,
-  (user: UserModel, question: QuestionModel, isQuestionAnsweredByUser: boolean): 'optionOne' | 'optionTwo' => {
-    if (!isQuestionAnsweredByUser) {
-      return null;
-    }
-    return user.answers[question.id];
-  }
+  getUser,
+  (question: QuestionModel, user: UserModel): QuestionOptionStatsModel => new QuestionOptionStatsModel(question, user)
 );

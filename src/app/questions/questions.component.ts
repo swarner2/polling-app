@@ -14,7 +14,7 @@ export class QuestionsComponent {
   @Input() questions$: Observable<Questions>;
 
     orderByTimestamp = (a: KeyValue<string, any>, b: KeyValue<string, any>): number => {
-    return a.value.timestamp > b.value.timestamp ? 1 : -1;
+    return a.value.timestamp < b.value.timestamp ? 1 : -1;
   }
 
   // TODO :: move into selector

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { map, tap } from 'rxjs/operators';
 import { users } from 'src/data/usersAndQuestions';
 import { PollState } from '../models/poll-state.model';
-import { getIsQuestionAnsweredByUser, getOptionOfQuestionChosenByUser, getQuestion } from '../store/questions/questions.selectors';
+import { getIsQuestionAnsweredByUser, getQuestion, getQuestionOptionStats } from '../store/questions/questions.selectors';
 import { getUser } from '../store/user/user.selectors';
 
 @Component({
@@ -11,18 +13,16 @@ import { getUser } from '../store/user/user.selectors';
   styleUrls: ['./question-detail.component.scss']
 })
 export class QuestionDetailComponent implements OnInit {
-  questionId = '8xf0y6ziyjabvozdd253nd';
+  questionId = this.route.snapshot.paramMap.get('question_id');
+  questionId$ = this.route.queryParams.pipe(map(_ => this.route.snapshot.paramMap.get('question_id')))
   question$ = this._store.select(getQuestion, {questionId: this.questionId});
   isQuestionAnswered$ = this._store.select(getIsQuestionAnsweredByUser, {questionId: this.questionId});
-  optionOfQuestionChosenByUser$ = this._store.select(getOptionOfQuestionChosenByUser, {questionId: this.questionId});
+  questionOptionStats$ = this._store.select(getQuestionOptionStats, {questionId: this.questionId}).pipe(tap(console.log));
   user$ = this._store.select(getUser);
   users = users;
 
-  constructor(private _store: Store<PollState>) { }
+  constructor(private _store: Store<PollState>, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
   }
-
-
-
 }
