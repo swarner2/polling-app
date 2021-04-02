@@ -22,6 +22,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { QuestionDetailComponent } from './question-detail/question-detail.component';
 import { EffectsModule } from '@ngrx/effects';
 import { LogoutEffects } from './effects/logout.effects';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -53,6 +54,7 @@ import { LogoutEffects } from './effects/logout.effects';
     MatTabsModule,
     MatExpansionModule,
     MatRadioModule,
+    FormsModule,
     EffectsModule.forRoot([LogoutEffects])
   ],
   providers: [],

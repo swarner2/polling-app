@@ -37,8 +37,8 @@ export class QuestionOptionStatsModel {
     const optionOneNumberOfVotes = question.optionOne.votes.length;
     const optionTwoNumberOfVotes = question.optionTwo.votes.length;
     const totalNumberOfVotes = optionOneNumberOfVotes + optionTwoNumberOfVotes;
-    const answeredOptionOne = user.answers[question.id] === 'optionOne';
-    const answeredOptionTwo = user.answers[question.id] === 'optionTwo';
+    const answeredOptionOne = user?.answers[question.id] === OptionId.optionOne;
+    const answeredOptionTwo = user?.answers[question.id] === OptionId.optionTwo;
     return {
       optionOne: new OptionStatsModel(optionOneNumberOfVotes, totalNumberOfVotes, answeredOptionOne, question.optionOne),
       optionTwo: new OptionStatsModel(optionTwoNumberOfVotes, totalNumberOfVotes, answeredOptionTwo, question.optionTwo)
@@ -46,6 +46,11 @@ export class QuestionOptionStatsModel {
   }
 }
 
+// TODO :: implement everywhere
+export enum OptionId {
+  optionOne = 'optionOne',
+  optionTwo = 'optionTwo'
+}
 
 export class OptionModel {
   votes: string[]; // list of userIds
