@@ -1,10 +1,11 @@
 import { KeyValue } from '@angular/common';
 import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
+import { UserModel } from 'src/app/models/user.model';
 import { addUser } from 'src/app/store/users/users.actions';
 import { getAllUsers } from 'src/app/store/users/users.selectors';
-import { users } from 'src/data/usersAndQuestions';
 import { PollState } from '../../models/poll-state.model';
 import { login } from '../../store/login/login.actions';
 import { CreateAccountDialogComponent } from '../create-account-dialog/create-account-dialog.component';
@@ -21,7 +22,7 @@ export class LoginComponent {
     return a.value.name > b.value.name ? 1 : -1;
   }
 
-  constructor(private _store: Store<PollState>, public dialog: MatDialog) {}
+  constructor(private _store: Store<PollState>, public dialog: MatDialog, private _snackBar: MatSnackBar) {}
 
     login(): void {
     this._store.dispatch(login({user: this.userSelection}));
@@ -37,6 +38,10 @@ export class LoginComponent {
       if (result) {
         const {name, avatarURL} = result;
         this._store.dispatch(addUser({name, avatarURL}));
+        this.userSelection = null;
+        this._snackBar.open('Account Added! You can now Login!', 'Close', {
+          duration: 2000,
+        });
       }
     });
   }

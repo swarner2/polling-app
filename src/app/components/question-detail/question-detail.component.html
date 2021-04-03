@@ -7,12 +7,20 @@
     <mat-card-content>
         <mat-radio-group 
         [(ngModel)]="selectedOption">
-            <div>
-                <mat-radio-button value="optionOne">{{(question$ | async)?.optionOne.text}}</mat-radio-button>
-            </div>
-            <div>
-                <mat-radio-button value="optionTwo">{{(question$ | async)?.optionTwo.text}}</mat-radio-button>
-            </div>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>
+                        <mat-radio-button value="optionOne">Option 1: {{(question$ | async)?.optionOne.text | question}} </mat-radio-button>
+                    </mat-card-title>
+                </mat-card-header>
+            </mat-card>
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>
+                       <mat-radio-button value="optionTwo">Option 2: {{(question$ | async)?.optionTwo.text | question}} </mat-radio-button>
+                    </mat-card-title>
+                </mat-card-header>
+            </mat-card>
         </mat-radio-group>
     </mat-card-content>
     <mat-card-actions>
@@ -25,13 +33,13 @@
         <mat-card-header>
             <img mat-card-avatar src="{{(user$ | async)?.avatarURL}}" onerror="this.src='/assets/default_avatar.jpg'">
             <mat-card-title>Would You Rather</mat-card-title>
-            <mat-card-subtitle>Asked by: {{users[(question$ | async)?.author]?.name }}</mat-card-subtitle>
+            <mat-card-subtitle>Asked by: {{users[(question$ | async)?.author]?.name | question }} </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
                 <mat-card *ngFor="let option of (questionOptionStats$ | async) | keyvalue ; let i = index">
                     <mat-card-header>
                         <span *ngIf="option.value['isUsersAnswer']" class="material-icons">check_circle</span>
-                        <mat-card-title>Option {{i + 1}}: {{option.value['text']}} </mat-card-title>
+                        <mat-card-title>Option {{i + 1}}: {{option.value['text'] | question}}  </mat-card-title>
                         <mat-card-subtitle> {{option.value['isUsersAnswer'] ? 'You Voted For This Option' : ' ' }}</mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-content>

@@ -14,7 +14,7 @@ export class CreateAccountDialogComponent {
     '/assets/avatar3.jpg',
     '/assets/avatar4.jpg',
     '/assets/avatar5.jpg',
-  ]
+  ];
 
   constructor(
     public dialogRef: MatDialogRef<CreateAccountDialogComponent>,

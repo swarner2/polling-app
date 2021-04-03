@@ -1,7 +1,9 @@
 import { KeyValue } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { users } from 'src/data/usersAndQuestions';
+import { PollState } from 'src/app/models/poll-state.model';
+import { getAllUsers } from 'src/app/store/users/users.selectors';
 import { QuestionModel, QuestionsModel } from '../../models/question.model';
 
 @Component({
@@ -11,13 +13,20 @@ import { QuestionModel, QuestionsModel } from '../../models/question.model';
 })
 export class QuestionsComponent {
   @Input() questions$: Observable<QuestionsModel>;
+  users = null;
+
+  constructor(private _store: Store<PollState>) {
+    this._store.select(getAllUsers).subscribe(allUsers => {
+      this.users = allUsers;
+    }).unsubscribe();
+  }
 
   orderByTimestamp = (a: KeyValue<string, any>, b: KeyValue<string, any>): number => {
     return a.value.timestamp < b.value.timestamp ? 1 : -1;
   }
 
   getQuestionTitle(question: KeyValue<string, QuestionModel>): string {
-    const authorName = users[question.value.author].name;
+    const authorName = this.users[question.value.author].name;
     const date = new Date(question.value.timestamp).toDateString();
     return `${authorName} - ${date}`;
   }

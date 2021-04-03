@@ -24,6 +24,6 @@
 
     </mat-card-content>
     <mat-card-actions>
-        <button mat-raised-button (click)="submit()">Submit</button>
+        <button mat-raised-button [disabled]="!(optionOneText && optionTwoText)" (click)="submit()">Submit</button>
     </mat-card-actions>
 </mat-card>

@@ -35,6 +35,7 @@ import { usersReducer } from './store/users/users.reducers';
 import { MatDialogModule } from '@angular/material/dialog';
 import { CreateAccountDialogComponent } from './components/create-account-dialog/create-account-dialog.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { QuestionPipe } from './pipes/question.pipe';
 
 
 
@@ -50,7 +51,8 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
     PageNotFoundComponent,
     AddQuestionComponent,
     LeaderboardComponent,
-    CreateAccountDialogComponent
+    CreateAccountDialogComponent,
+    QuestionPipe
   ],
   imports: [
     BrowserModule,
