@@ -2,7 +2,7 @@ export let users = {
   rashmi: {
     id: 'rashmi',
     name: 'Rashmi Manandhar',
-    avatarURL: '',
+    avatarURL: 'https://thumbs.dreamstime.com/b/businessman-icon-vector-male-avatar-profile-image-profile-businessman-icon-vector-male-avatar-profile-image-182095609.jpg',
     answers: {
       '8xf0y6ziyjabvozdd253nd': 'optionOne',
       '6ni6ok3ym7mf1p33lnez': 'optionTwo',

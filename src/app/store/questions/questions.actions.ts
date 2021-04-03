@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { OptionId, QuestionModel } from 'src/app/models/question.model';
+import { OptionId, QuestionModel, QuestionsModel } from 'src/app/models/question.model';
 
 export enum QuestionActions {
     setAllQuestions = '[Questions] Set All',
@@ -7,9 +7,7 @@ export enum QuestionActions {
     addQuestion = '[Questions] Add Question'
 }
 
-// TODO :: handle local storage to retain changes on navigating via browser
-// TODO :: handle typing better
-export const setAllQuestions = createAction(QuestionActions.setAllQuestions, props<{questions: any}>());
+export const setAllQuestions = createAction(QuestionActions.setAllQuestions, props<{questions: QuestionsModel}>());
 export const answerQuestion = createAction(
     QuestionActions.answerQuestion,
     props<{questionId: string, selectedOption: OptionId, userId: string}>()

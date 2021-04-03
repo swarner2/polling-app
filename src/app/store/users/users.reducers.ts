@@ -1,7 +1,7 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { UserModel, UsersModel } from 'src/app/models/user.model';
 import { addQuestion, answerQuestion } from '../questions/questions.actions';
-import { setAllUsers } from './users.actions';
+import { addUser, setAllUsers } from './users.actions';
 
 export const initialState = null;
 
@@ -32,6 +32,20 @@ const _usersReducer = createReducer<UsersModel, Action>(
           question.id
         ]
       })
+    };
+  }),
+  on(addUser, (state, props) => {
+    const {name, avatarURL} = props;
+    const user = new UserModel({
+      name,
+      avatarURL,
+      id: name.toLowerCase().replace(' ', ''),
+      questions: [],
+      answers: {}
+    });
+    return {
+      ...state,
+      [user.id] : user
     };
   })
 );

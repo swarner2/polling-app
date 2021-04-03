@@ -48,7 +48,6 @@ export class QuestionOptionStatsModel {
   }
 }
 
-// TODO :: implement everywhere
 export enum OptionId {
   optionOne = 'optionOne',
   optionTwo = 'optionTwo'

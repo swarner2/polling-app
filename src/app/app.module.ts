@@ -32,6 +32,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 import { MatTableModule } from '@angular/material/table';
 import { usersReducer } from './store/users/users.reducers';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CreateAccountDialogComponent } from './components/create-account-dialog/create-account-dialog.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 
@@ -46,7 +49,8 @@ import { usersReducer } from './store/users/users.reducers';
     QuestionDetailComponent,
     PageNotFoundComponent,
     AddQuestionComponent,
-    LeaderboardComponent
+    LeaderboardComponent,
+    CreateAccountDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +76,9 @@ import { usersReducer } from './store/users/users.reducers';
     MatInputModule,
     MatIconModule,
     MatSnackBarModule,
-    MatTableModule
+    MatTableModule,
+    MatDialogModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]

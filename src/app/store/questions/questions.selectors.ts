@@ -4,7 +4,6 @@ import { QuestionModel, QuestionOptionStatsModel, QuestionsModel } from 'src/app
 import { UserModel } from 'src/app/models/user.model';
 import { getUser } from '../users/users.selectors';
 
-// TODO :: rename PollStore to PollState
 export const selectPollState = (state: PollState) => state;
 
 export const getQuestions = createSelector(

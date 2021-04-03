@@ -1,10 +1,10 @@
-import { createReducer, on, select } from '@ngrx/store';
+import { Action, createReducer, on } from '@ngrx/store';
 import { QuestionModel, QuestionsModel } from 'src/app/models/question.model';
 import { addQuestion, answerQuestion, setAllQuestions } from './questions.actions';
 
 export const initialState = null;
 
-const _questionsReducer = createReducer(
+const _questionsReducer = createReducer<QuestionsModel, Action>(
   initialState,
   on(setAllQuestions, (state, props) => props.questions),
   on(answerQuestion, (state, props) => {
@@ -20,7 +20,7 @@ const _questionsReducer = createReducer(
   }),
  on(addQuestion, (state, props) => {
   const { question } = props;
-  return {...state, [question.id]: question }
+  return {...state, [question.id]: question };
  })
 );
 

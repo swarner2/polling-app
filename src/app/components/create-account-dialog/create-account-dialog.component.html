@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>
+    Create an Account 
+    <img mat-card-avatar src="{{data.avatarURL}}" onerror="this.src='/assets/default_avatar.jpg'">
+</h1>
+<div mat-dialog-content>
+    <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput [(ngModel)]="data.name">
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>avatarURL</mat-label>
+        <input matInput [(ngModel)]="data.avatarURL" [matAutocomplete]="avatars">
+        <mat-autocomplete autoActiveFirstOption #avatars="matAutocomplete">
+            <mat-option *ngFor="let avatarUrl of avatarUrls" [value]="avatarUrl">
+                <img mat-card-avatar src="{{avatarUrl}}" onerror="this.src='/assets/default_avatar.jpg'">
+                {{avatarUrl}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="data" [disabled]="!data.name" cdkFocusInitial>Submit</button>
+</div>

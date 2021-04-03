@@ -16,7 +16,6 @@ export class QuestionsComponent {
     return a.value.timestamp < b.value.timestamp ? 1 : -1;
   }
 
-  // TODO :: move into selector
   getQuestionTitle(question: KeyValue<string, QuestionModel>): string {
     const authorName = users[question.value.author].name;
     const date = new Date(question.value.timestamp).toDateString();
