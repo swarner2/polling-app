@@ -31,6 +31,20 @@ export let users = {
       '6ni6ok3ym7mf1p33lnez': 'optionTwo'
     },
     questions: ['6ni6ok3ym7mf1p33lnez', 'xj352vofupe1dqz9emx13r']
+  },
+  samwarner: {
+    id: 'samwarner',
+    name: 'Samuel Warner',
+    avatarURL: '/assets/avatar1.jpg',
+    answers: {
+      xj352vofupe1dqz9emx13r: 'optionOne',
+      vthrdm985a262al8qx3do: 'optionTwo',
+      am8ehyc8byjqgar0jgpub9: 'optionOne',
+      loxhs1bqm25b708cmbf3g: 'optionOne',
+      '6ni6ok3ym7mf1p33lnez': 'optionOne',
+      '8xf0y6ziyjabvozdd253nd': 'optionTwo'
+    },
+    questions: []
   }
 };
 
