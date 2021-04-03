@@ -2,8 +2,8 @@ import { KeyValue } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { users } from 'src/data/usersAndQuestions';
-import { Questions } from '../models/poll-state.model';
-import { QuestionModel } from '../models/question.model';
+import { Questions } from '../../models/poll-state.model';
+import { QuestionModel } from '../../models/question.model';
 
 @Component({
   selector: 'app-questions',

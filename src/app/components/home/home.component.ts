@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { PollState } from '../models/poll-state.model';
-import { getAnsweredQuestions, getQuestions, getUnansweredQuestions } from '../store/questions/questions.selectors';
+import { PollState } from '../../models/poll-state.model';
+import { getAnsweredQuestions, getQuestions, getUnansweredQuestions } from '../../store/questions/questions.selectors';
 
 @Component({
   selector: 'app-home',

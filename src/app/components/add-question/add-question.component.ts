@@ -1,12 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Subscription } from 'rxjs';
-import { PollState, Questions } from '../models/poll-state.model';
-import { QuestionModel } from '../models/question.model';
-import { addQuestion } from '../store/questions/questions.actions';
-import { getQuestions } from '../store/questions/questions.selectors';
-import { getUser } from '../store/user/user.selectors'
+import { PollState, Questions } from '../../models/poll-state.model';
+import { QuestionModel } from '../../models/question.model';
+import { addQuestion } from '../../store/questions/questions.actions';
+import { getQuestions } from '../../store/questions/questions.selectors';
+import { getUser } from '../../store/user/user.selectors'
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 ;
 
 @Component({
@@ -22,7 +23,7 @@ export class AddQuestionComponent implements OnInit, OnDestroy {
 
   questionsSubscription: Subscription;
 
-  constructor(private store: Store<PollState>, private _snackBar: MatSnackBar) {
+  constructor(private store: Store<PollState>, private _snackBar: MatSnackBar, private router: Router) {
     this.store.select(getUser).subscribe(user => {
       this.userId = user.id;
     }).unsubscribe();
@@ -64,7 +65,7 @@ export class AddQuestionComponent implements OnInit, OnDestroy {
     this._snackBar.open('Question Added!', 'Close', {
       duration: 2000,
     });
-
+    this.router.navigate(["/home"]);
   }
 
   generateId(): string {

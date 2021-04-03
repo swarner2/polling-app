@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AddQuestionComponent } from './add-question/add-question.component';
-import { HomeComponent } from './home/home.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { QuestionDetailComponent } from './question-detail/question-detail.component';
+import { AddQuestionComponent } from './components/add-question/add-question.component';
+import { HomeComponent } from './components/home/home.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { QuestionDetailComponent } from './components/question-detail/question-detail.component';
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent},

@@ -11,24 +11,27 @@ import { MatCardModule } from '@angular/material/card';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { UserInfoComponent } from './user-info/user-info.component';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { UserInfoComponent } from './components/user-info/user-info.component';
 import { MatTabsModule } from '@angular/material/tabs';
-import { QuestionsComponent } from './questions/questions.component';
+import { QuestionsComponent } from './components/questions/questions.component';
 import { questionsReducer } from './store/questions/questions.reducers';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatRadioModule } from '@angular/material/radio';
-import { QuestionDetailComponent } from './question-detail/question-detail.component';
+import { QuestionDetailComponent } from './components/question-detail/question-detail.component';
 import { EffectsModule } from '@ngrx/effects';
 import { LogoutEffects } from './effects/logout.effects';
 import { FormsModule } from '@angular/forms';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { MatMenuModule } from '@angular/material/menu';
-import { AddQuestionComponent } from './add-question/add-question.component';
+import { AddQuestionComponent } from './components/add-question/add-question.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
+import { MatTableModule } from '@angular/material/table';
+
 
 
 
@@ -41,7 +44,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     QuestionsComponent,
     QuestionDetailComponent,
     PageNotFoundComponent,
-    AddQuestionComponent
+    AddQuestionComponent,
+    LeaderboardComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +69,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatMenuModule,
     MatInputModule,
     MatIconModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

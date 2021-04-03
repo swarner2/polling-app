@@ -3,10 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { map, tap } from 'rxjs/operators';
 import { users } from 'src/data/usersAndQuestions';
-import { PollState } from '../models/poll-state.model';
-import { answerQuestion } from '../store/questions/questions.actions';
-import { getIsQuestionAnsweredByUser, getQuestion, getQuestionOptionStats } from '../store/questions/questions.selectors';
-import { getUser } from '../store/user/user.selectors';
+import { PollState } from '../../models/poll-state.model';
+import { answerQuestion } from '../../store/questions/questions.actions';
+import { getIsQuestionAnsweredByUser, getQuestion, getQuestionOptionStats } from '../../store/questions/questions.selectors';
+import { getUser } from '../../store/user/user.selectors';
 
 @Component({
   selector: 'app-question-detail',
