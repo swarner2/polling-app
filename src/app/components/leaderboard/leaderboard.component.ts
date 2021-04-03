@@ -1,9 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { PollState } from 'src/app/models/poll-state.model';
+import { getAllUsers } from 'src/app/store/users/users.selectors';
 
 
-export interface LeaderBoardElement {
+export interface LeaderboardElement {
   name: string;
-  position: number;
+  avatarURL: string;
   asked: number;
   answered: number;
 }
@@ -15,8 +20,20 @@ export interface LeaderBoardElement {
 })
 export class LeaderboardComponent implements OnInit {
   displayedColumns: string[] = ['position', 'name', 'asked', 'answered'];
-  dataSource = [  ];
-  constructor() { }
+  dataSource$: Observable<LeaderboardElement[]> = this._store.select(getAllUsers).pipe(
+      map(users => {
+        return Object.values(users).map(user => {
+          return {
+            name: user.name,
+            avatarURL: user.avatarURL,
+            asked: user.questions.length,
+            answered: Object.values(user.answers).length
+          };
+        }).sort((x, y) => x.asked + x.answered < y.asked + y.answered ? 1 : -1)
+        ;
+      })
+    );
+  constructor(private _store: Store<PollState>) { }
 
   ngOnInit(): void {
   }

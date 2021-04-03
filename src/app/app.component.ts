@@ -7,6 +7,7 @@ import { getQuestions } from './store/questions/questions.selectors';
 import { logout } from './store/login/login.actions';
 import { getIsLoggedIn } from './store/login/login.selectors';
 import { setAllUsers } from './store/users/users.actions';
+import { getUser } from './store/users/users.selectors';
 
 @Component({
   selector: 'app-root',
@@ -16,6 +17,7 @@ import { setAllUsers } from './store/users/users.actions';
 export class AppComponent {
   questions$ = this._store.select(getQuestions);
   isLoggedIn$ = this._store.select(getIsLoggedIn);
+  user$ = this._store.select(getUser);
 
   constructor(private _store: Store<PollState>) {
     this._store.dispatch(setAllQuestions({questions}));

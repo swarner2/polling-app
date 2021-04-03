@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 import { UserModel, UsersModel } from 'src/app/models/user.model';
-import { answerQuestion } from '../questions/questions.actions';
+import { addQuestion, answerQuestion } from '../questions/questions.actions';
 import { setAllUsers } from './users.actions';
 
 export const initialState = null;
@@ -19,7 +19,19 @@ const _usersReducer = createReducer<UsersModel, Action>(
           [questionId]: selectedOption,
         }
       })
-
+    };
+  }),
+  on(addQuestion, (state, props) => {
+    const { question } = props;
+    return {
+      ...state,
+      [question.author]: new UserModel({
+        ...state[question.author],
+        questions: [
+          ...state[question.author].questions,
+          question.id
+        ]
+      })
     };
   })
 );
