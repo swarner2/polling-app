@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { PollState } from '../../models/poll-state.model';
 import { getAnsweredQuestions, getQuestions, getUnansweredQuestions } from '../../store/questions/questions.selectors';
@@ -8,7 +8,7 @@ import { getAnsweredQuestions, getQuestions, getUnansweredQuestions } from '../.
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
   questions$ = this._store.select(getQuestions);
 
@@ -16,8 +16,5 @@ export class HomeComponent implements OnInit {
   answeredQuestions$ = this._store.select(getAnsweredQuestions);
 
   constructor(private _store: Store<PollState>) { }
-
-  ngOnInit(): void {
-  }
 
 }

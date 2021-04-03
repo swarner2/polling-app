@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { getUser } from 'src/app/store/users/users.selectors';
 import { PollState } from '../../models/poll-state.model';
@@ -12,6 +12,5 @@ export class UserInfoComponent {
 
   user$ = this._store.select(getUser);
   constructor(private _store: Store<PollState>) { }
-
 
 }

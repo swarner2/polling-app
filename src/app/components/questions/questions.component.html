@@ -1,8 +1,10 @@
 
 <ng-container *ngIf="(questions$ | async | keyvalue).length; else noQuestions">
-   <div *ngFor="let question of (questions$ | async) | keyvalue: orderByTimestamp">
-      <button mat-button [routerLink]="['/questions', question.key]">{{getQuestionTitle(question)}}</button>
-   </div>
+   <ng-container *ngFor="let data of [{questions: questions$ | async, users: users$ | async}]">
+      <div *ngFor="let question of data.questions | keyvalue: orderByTimestamp">
+         <button mat-button [routerLink]="['/questions', question.key]">{{getQuestionTitle(question, data.users)}}</button>
+      </div>
+   </ng-container>
 </ng-container>
 
 <ng-template #noQuestions>

@@ -23,7 +23,7 @@
         </div>
 
     </mat-card-content>
-    <mat-card-actions>
-        <button mat-raised-button [disabled]="!(optionOneText && optionTwoText)" (click)="submit()">Submit</button>
+    <mat-card-actions *ngFor="let data of [{questions: questions$ | async, userId: userId$ | async}]">
+        <button mat-raised-button [disabled]="!(optionOneText && optionTwoText)" (click)="submit(data)">Submit</button>
     </mat-card-actions>
 </mat-card>

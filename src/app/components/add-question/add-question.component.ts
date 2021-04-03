@@ -1,6 +1,5 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Subscription } from 'rxjs';
 import { PollState } from '../../models/poll-state.model';
 import { QuestionModel, QuestionsModel } from '../../models/question.model';
 import { addQuestion } from '../../store/questions/questions.actions';
@@ -8,48 +7,33 @@ import { getQuestions } from '../../store/questions/questions.selectors';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { getUserId } from 'src/app/store/login/login.selectors';
-;
+
+
 
 @Component({
   selector: 'app-add-question',
   templateUrl: './add-question.component.html',
   styleUrls: ['./add-question.component.scss']
 })
-export class AddQuestionComponent implements OnInit, OnDestroy {
+export class AddQuestionComponent {
   optionOneText = '';
   optionTwoText = '';
-  userId: string = null;
-  questions: QuestionsModel = null;
 
-  questionsSubscription: Subscription;
+  userId$ = this.store.select(getUserId);
+  questions$ = this.store.select(getQuestions);
 
-  constructor(private store: Store<PollState>, private _snackBar: MatSnackBar, private router: Router) {
-    this.store.select(getUserId).subscribe(userId => {
-      this.userId = userId;
-    }).unsubscribe();
-    this.questionsSubscription = this.store.select(getQuestions).subscribe(questions => {
-      this.questions = questions;
-      this.optionOneText = '';
-      this.optionTwoText = '';
-    });
-  }
+  constructor(private store: Store<PollState>, private _snackBar: MatSnackBar, private router: Router) {}
 
-  ngOnInit(): void {
-  }
-
-  ngOnDestroy(): void {
-    this.questionsSubscription.unsubscribe()
-  }
-
-  submit(): void {
+  submit(data: {questions: QuestionsModel, userId: string}): void {
+    const { questions, userId } = data;
     let questionId = this.generateId();
-    while (questionId in this.questions) {
+    while (questionId in questions) {
       questionId = this.generateId();
     }
 
     const question = new QuestionModel({
       id: questionId,
-      author: this.userId,
+      author: userId,
       timestamp: new Date().getTime(),
       optionOne: {
         votes: [],

@@ -15,8 +15,10 @@ import { CreateAccountDialogComponent } from '../create-account-dialog/create-ac
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-  users$ = this._store.select(getAllUsers);
   userSelection = null;
+
+  users$ = this._store.select(getAllUsers);
+
   orderByName = (a: KeyValue<string, any>, b: KeyValue<string, any>): number => {
     return a.value.name > b.value.name ? 1 : -1;
   }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { OptionId, QuestionModel } from 'src/app/models/question.model';
 import { UserModel } from 'src/app/models/user.model';
 import { getUser } from 'src/app/store/users/users.selectors';
@@ -18,13 +18,8 @@ export class QuestionDetailComponent {
   selectedOption = null;
   questionId = this.route.snapshot.paramMap.get('question_id');
 
-  question$ = this._store.select(getQuestion, {questionId: this.questionId})
-    .pipe(
-      tap(question => {
-        if (question === undefined) {
-          this.router.navigate(['page-not-found']);
-        }
-      }));
+  question$ = this._store.select(getQuestion, {questionId: this.questionId});
+  displayPageNotFound$ = this.question$.pipe(map(question => question === undefined));
   isQuestionAnswered$ = this._store.select(getIsQuestionAnsweredByUser, {questionId: this.questionId});
   questionOptionStats$ = this._store.select(getQuestionOptionStats, {questionId: this.questionId});
   questionAuthor$ = this._store.select(getQuestionAuthor, {questionId: this.questionId});

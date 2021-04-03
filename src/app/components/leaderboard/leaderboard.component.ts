@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -18,8 +18,8 @@ export interface LeaderboardElement {
   templateUrl: './leaderboard.component.html',
   styleUrls: ['./leaderboard.component.scss']
 })
-export class LeaderboardComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'asked', 'answered'];
+export class LeaderboardComponent {
+  displayedColumns: string[] = ['avatar', 'name', 'asked', 'answered'];
   dataSource$: Observable<LeaderboardElement[]> = this._store.select(getAllUsers).pipe(
       map(users => {
         return Object.values(users).map(user => {
@@ -34,8 +34,5 @@ export class LeaderboardComponent implements OnInit {
       })
     );
   constructor(private _store: Store<PollState>) { }
-
-  ngOnInit(): void {
-  }
 
 }
