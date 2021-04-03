@@ -1,6 +1,5 @@
 import { createReducer, on, select } from '@ngrx/store';
-import { Questions } from 'src/app/models/poll-state.model';
-import { QuestionModel } from 'src/app/models/question.model';
+import { QuestionModel, QuestionsModel } from 'src/app/models/question.model';
 import { addQuestion, answerQuestion, setAllQuestions } from './questions.actions';
 
 export const initialState = null;
@@ -25,6 +24,6 @@ const _questionsReducer = createReducer(
  })
 );
 
-export function questionsReducer(state, action): Questions {
+export function questionsReducer(state, action): QuestionsModel {
   return _questionsReducer(state, action);
 }

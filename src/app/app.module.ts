@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
-import { userReducer } from './store/user/user.reducers';
+import { loginReducer } from './store/login/login.reducers';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
@@ -31,6 +31,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { LeaderboardComponent } from './components/leaderboard/leaderboard.component';
 import { MatTableModule } from '@angular/material/table';
+import { usersReducer } from './store/users/users.reducers';
 
 
 
@@ -52,8 +53,9 @@ import { MatTableModule } from '@angular/material/table';
     AppRoutingModule,
     StoreModule.forRoot(
       {
-        user: userReducer,
-        questions: questionsReducer
+        userId: loginReducer,
+        questions: questionsReducer,
+        users: usersReducer
       }, {}),
     BrowserAnimationsModule,
     StoreDevtoolsModule.instrument({ maxAge: 25 }),

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { users } from 'src/data/usersAndQuestions';
 import { PollState } from '../../models/poll-state.model';
-import { login } from '../../store/user/user.actions';
+import { login } from '../../store/login/login.actions';
 
 @Component({
   selector: 'app-login',

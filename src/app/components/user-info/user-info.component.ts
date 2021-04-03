@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { getUser } from 'src/app/store/users/users.selectors';
 import { PollState } from '../../models/poll-state.model';
-import { getUser } from '../../store/user/user.selectors';
 
 @Component({
   selector: 'app-user-info',

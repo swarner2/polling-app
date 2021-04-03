@@ -1,9 +1,10 @@
-import { QuestionModel } from './question.model';
-import { UserModel } from './user.model';
+import { QuestionModel, QuestionsModel } from './question.model';
+import { UsersModel } from './user.model';
 
-export type Questions = {[key: string]: QuestionModel };
+
 
 export class PollState {
-    user: UserModel;
-    questions: Questions;
+    userId: string;
+    users: UsersModel;
+    questions: QuestionsModel;
 }

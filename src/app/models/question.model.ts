@@ -1,4 +1,4 @@
-import { UserModel } from "./user.model";
+import { UserModel } from './user.model';
 
 export class QuestionModel {
   id: string;
@@ -11,6 +11,8 @@ export class QuestionModel {
       Object.assign(this, question);
   }
 }
+
+export type QuestionsModel = {[key: string]: QuestionModel };
 
 export class OptionStatsModel {
   numberOfVotes: number;
