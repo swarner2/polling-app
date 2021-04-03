@@ -1,23 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
+import { OptionId, QuestionModel } from 'src/app/models/question.model';
+import { UserModel } from 'src/app/models/user.model';
 import { getUser } from 'src/app/store/users/users.selectors';
-import { users } from 'src/data/usersAndQuestions';
 import { PollState } from '../../models/poll-state.model';
 import { answerQuestion } from '../../store/questions/questions.actions';
-import { getIsQuestionAnsweredByUser, getQuestion, getQuestionOptionStats } from '../../store/questions/questions.selectors';
+import { getIsQuestionAnsweredByUser, getQuestion, getQuestionAuthor, getQuestionOptionStats } from '../../store/questions/questions.selectors';
 
 @Component({
   selector: 'app-question-detail',
   templateUrl: './question-detail.component.html',
   styleUrls: ['./question-detail.component.scss']
 })
-export class QuestionDetailComponent implements OnInit {
+export class QuestionDetailComponent {
+  selectedOption = null;
   questionId = this.route.snapshot.paramMap.get('question_id');
-  questionId$ = this.route.queryParams.pipe(
-    map(_ => this.route.snapshot.paramMap.get('question_id')),
-    );
+
   question$ = this._store.select(getQuestion, {questionId: this.questionId})
     .pipe(
       tap(question => {
@@ -27,25 +27,19 @@ export class QuestionDetailComponent implements OnInit {
       }));
   isQuestionAnswered$ = this._store.select(getIsQuestionAnsweredByUser, {questionId: this.questionId});
   questionOptionStats$ = this._store.select(getQuestionOptionStats, {questionId: this.questionId});
-  userId: string = null;
-  user$ = this._store.select(getUser).pipe(tap(user => {
-    this.userId = user?.id;
-  }));
-  users = users;
-  selectedOption = null;
+  questionAuthor$ = this._store.select(getQuestionAuthor, {questionId: this.questionId});
+  user$ = this._store.select(getUser);
 
   constructor(private _store: Store<PollState>, private route: ActivatedRoute, private router: Router) {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
   }
 
-  ngOnInit(): void {
-  }
-
-  submitAnswer(): void {
+  submitAnswer(data: {user: UserModel, question: QuestionModel, selectedOption: OptionId}): void {
+    const {user, question, selectedOption} = data;
     this._store.dispatch(answerQuestion({
-      questionId: this.questionId,
-      selectedOption: this.selectedOption,
-      userId: this.userId
+      questionId: question.id,
+      selectedOption,
+      userId: user.id
     }));
   }
 }

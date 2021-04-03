@@ -15,7 +15,7 @@ const _usersReducer = createReducer<UsersModel, Action>(
       [userId]: new UserModel({
         ...state[userId],
         answers: {
-          ...state[userId].answers,
+          ...state[userId].answers || {},
           [questionId]: selectedOption,
         }
       })
@@ -28,7 +28,7 @@ const _usersReducer = createReducer<UsersModel, Action>(
       [question.author]: new UserModel({
         ...state[question.author],
         questions: [
-          ...state[question.author].questions,
+          ...state[question.author].questions || [],
           question.id
         ]
       })

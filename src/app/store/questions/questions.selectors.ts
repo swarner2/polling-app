@@ -1,8 +1,8 @@
 import { createSelector } from '@ngrx/store';
 import { PollState } from 'src/app/models/poll-state.model';
 import { QuestionModel, QuestionOptionStatsModel, QuestionsModel } from 'src/app/models/question.model';
-import { UserModel } from 'src/app/models/user.model';
-import { getUser } from '../users/users.selectors';
+import { UserModel, UsersModel } from 'src/app/models/user.model';
+import { getAllUsers, getUser } from '../users/users.selectors';
 
 export const selectPollState = (state: PollState) => state;
 
@@ -68,4 +68,10 @@ export const getQuestionOptionStats = createSelector(
   getQuestion,
   getUser,
   (question: QuestionModel, user: UserModel): QuestionOptionStatsModel => new QuestionOptionStatsModel(question, user)
+);
+
+export const getQuestionAuthor = createSelector(
+  getQuestion,
+  getAllUsers,
+  (question: QuestionModel, users: UsersModel): UserModel => users[question?.author]
 );

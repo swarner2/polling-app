@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store } from '@ngrx/store';
-import { UserModel } from 'src/app/models/user.model';
 import { addUser } from 'src/app/store/users/users.actions';
 import { getAllUsers } from 'src/app/store/users/users.selectors';
 import { PollState } from '../../models/poll-state.model';
