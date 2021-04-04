@@ -1,7 +1,7 @@
 <app-login *ngIf="!(isLoggedIn$ | async); else outlet"></app-login>
 
 <ng-template #outlet>
-    <div>
+    <div class="menu-container">
         <button mat-button [routerLink]="['/home']">Home</button>
         <button mat-button [matMenuTriggerFor]="questionsMenu">Questions</button>
         <mat-menu #questionsMenu="matMenu" yPosition="below">
@@ -17,7 +17,6 @@
         <button mat-button [routerLink]="['/add']">Add A Question</button>
         <button mat-button [routerLink]="['/leaderboard']">Leaderboard</button>
         <button mat-button (click)="logout()">Logout</button>
-
     </div>
 
     <app-user-info></app-user-info>

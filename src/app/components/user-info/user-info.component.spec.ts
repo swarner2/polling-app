@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatCardModule } from '@angular/material/card';
 
 import { UserInfoComponent } from './user-info.component';
+import { mockDefaultStore } from 'src/app/testing/mock-store-provider';
 
 describe('UserInfoComponent', () => {
   let component: UserInfoComponent;
@@ -8,7 +10,11 @@ describe('UserInfoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UserInfoComponent ]
+      imports: [MatCardModule],
+      declarations: [ UserInfoComponent ],
+      providers: [
+        mockDefaultStore,
+      ]
     })
     .compileComponents();
   });

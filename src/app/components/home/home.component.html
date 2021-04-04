@@ -1,4 +1,4 @@
 <mat-tab-group>
-    <mat-tab label="Unanswered Questions"> <app-questions [questions$]="unansweredQuestions$"></app-questions> </mat-tab>
-    <mat-tab label="Answered Questions"> <app-questions [questions$]="answeredQuestions$"></app-questions> </mat-tab>
+    <mat-tab class="unanswered-questions" label="Unanswered Questions"> <app-questions [questions$]="unansweredQuestions$"></app-questions> </mat-tab>
+    <mat-tab class="answered-questions" label="Answered Questions"> <app-questions [questions$]="answeredQuestions$"></app-questions> </mat-tab>
 </mat-tab-group>

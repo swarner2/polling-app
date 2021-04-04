@@ -11,7 +11,6 @@ import { getAnsweredQuestions, getQuestions, getUnansweredQuestions } from '../.
 export class HomeComponent {
 
   questions$ = this._store.select(getQuestions);
-
   unansweredQuestions$ = this._store.select(getUnansweredQuestions);
   answeredQuestions$ = this._store.select(getAnsweredQuestions);
 

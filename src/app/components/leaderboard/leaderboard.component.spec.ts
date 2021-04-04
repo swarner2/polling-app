@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatTableModule } from '@angular/material/table';
+import { mockDefaultStore } from 'src/app/testing/mock-store-provider';
 
 import { LeaderboardComponent } from './leaderboard.component';
 
@@ -8,7 +10,11 @@ describe('LeaderboardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LeaderboardComponent ]
+      imports: [ MatTableModule ],
+      declarations: [ LeaderboardComponent ],
+      providers: [
+        mockDefaultStore,
+      ]
     })
     .compileComponents();
   });
